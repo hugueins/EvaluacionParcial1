@@ -6,43 +6,49 @@ header("Allow: GET, POST, OPTIONS, PUT, DELETE");
 $method = $_SERVER["REQUEST_METHOD"];
 if($method == "OPTIONS") {die();}
 
-require_once ("../models/valoracion.models.php");
-$rol = new Valoracion;
+require_once ("../models/actores.models.php");
+$actores = new Actores;
 
 switch ($_GET["op"]) {
     case "todos":
-        $datos =$rol->todos();
+        $datos =$actores->todos();
         while ($row = mysqli_fetch_assoc ($datos)) {
             $todos[] =$row;
         }
         echo json_encode($todos);
         break;
     case "uno":
-        $valoracion_id =$_POST["valoracion_id"];
-        //var_dump ($valoracion_id);
+        $actor_id =$_POST["actor_id"];
+        //var_dump ($actor_id);
         //die;
         $datos = array ();
-        $datos = $rol->uno($valoracion_id);
+        $datos = $actores->uno($actor_id);
         $res = mysqli_fetch_assoc($datos);
         echo json_encode ($res);
         break;
     case "insertar":
         $nombre = $_POST ["nombre"];
+        $apellido = $_POST ["apellido"];
+        $fecha_nacimiento = $_POST ["fecha_nacimiento"]; 
+        $nacionalidad = $_POST ["nacionalidad"]; 
         $datos = array ();
-        $datos= $rol ->insertar ($nombre);
+        $datos= $actores ->insertar ($nombre, $apellido, $fecha_nacimiento, $nacionalidad);
         echo json_encode ($datos);
         break;
     case "actualizar":
-        $valoracion_id = $_POST ["valoracion_id"];
+        $actor_id = $_POST ["actor_id"];
         $nombre = $_POST ["nombre"];
+        $apellido = $_POST ["apellido"];
+        $fecha_nacimiento = $_POST ["fecha_nacimiento"]; 
+        $nacionalidad = $_POST ["nacionalidad"]; 
         $datos = array ();
-        $datos= $rol ->actualizar ($nombre);
+        $datos= $actores ->actualizar ($nombre, $apellido, $fecha_nacimiento, $nacionalidad);
         echo json_encode ($datos);
         break;
      case "eliminar":
-        $valoracion_id = $_POST ["valoracion_id"];
+        $actores_id = $_POST ["actores_id"];
         $datos = array ();
-        $datos = $rol -> eliminar ($valoracion_id);
+        $datos = $actores -> eliminar ($actores_id);
         echo json_encode ($datos);
         break;  
 }

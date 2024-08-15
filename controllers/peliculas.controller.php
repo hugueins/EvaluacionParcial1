@@ -9,21 +9,21 @@ if($method == "OPTIONS") {die();}
 require_once ("../models/peliculas.models.php");
 $peliculas = new Peliculas;
 
-switch ($_GET["op"]){
+switch ($_GET["op"]) {
     case "todos":
-        $datos=array ();
-        $datos =$peliculas->$todos();
-        while ($row = msqli_fecth_assoc ($datos))
-        {
+        $datos =$peliculas->todos();
+        while ($row = mysqli_fetch_assoc ($datos)) {
             $todos[] =$row;
         }
         echo json_encode($todos);
         break;
     case "uno":
         $peliculas_id =$_POST["peliculas_id"];
+        //var_dump ($peliculas_id);
+        //die;
         $datos = array ();
-        $datos= $peliculas ->uno ($peliculas_id);
-        $res = mysli_fecth_assoc($datos);
+        $datos = $peliculas->uno($peliculas_id);
+        $res = mysqli_fetch_assoc($datos);
         echo json_encode ($res);
         break;
     case "insertar":
@@ -31,19 +31,20 @@ switch ($_GET["op"]){
         $genero = $_POST ["genero"];
         $anio = $_POST ["anio"]; 
         $director = $_POST ["director"]; 
-        $valoracion_valoracion_id = $_POST ["valoracion_valoracion_id"];
+        $usuario_beneficiario_id = $_POST ["usuario_beneficiario_id"];
         $datos = array ();
-        $datos= $peliculas ->insertar ($titulo, $genero, $anio, $director, $valoracion_valoracion_id);
+        $datos= $peliculas ->insertar ($titulo, $genero, $anio, $director, $usuario_beneficiario_id);
         echo json_encode ($datos);
         break;
     case "actualizar":
+        $peliculas_id = $_POST ["peliculas_id"];
         $titulo = $_POST ["titulo"];
         $genero = $_POST ["genero"];
         $anio = $_POST ["anio"]; 
         $director = $_POST ["director"]; 
-        $valoracion_valoracion_id = $_POST ["valoracion_valoracion_id"];
+        $usuario_beneficiario_id = $_POST ["usuario_beneficiario_id"];
         $datos = array ();
-        $datos= $peliculas ->actualizar ($titulo, $genero, $anio, $director, $valoracion_valoracion_id);
+        $datos= $peliculas ->actualizar ($titulo, $genero, $anio, $director, $usuario_beneficiario_id);
         echo json_encode ($datos);
         break;
      case "eliminar":

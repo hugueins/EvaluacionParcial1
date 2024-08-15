@@ -1,30 +1,32 @@
 <?php
 require_once('../config/config.php');
-class peliculas{
-
+class Peliculas{
     public function todos() {
-        $con = new ClassConectar();
+        $con = new ClaseConectar();
         $con = $con->ProcedimientoParaConectar();
         $cadena = "select * from peliculas";
         $datos = mysqli_query ($con, $cadena);
         $con->close();
         return $datos; 
     } 
-        
-    public function uno($peliculas_id){
-        $con = new ClassConectar();
+   
+    public function uno ($peliculas_id)
+    {
+        $con = new ClaseConectar();
         $con = $con->ProcedimientoParaConectar();
-        $cadena = "select * from peliculas where peliculas_id=$peliculas_id";
-        $datos = mysqli_query ($con, $cadena);
+        $cadena = 'select * from peliculas where peliculas_id='. $peliculas_id;
+        //echo $cadena;
+        //die;
+        $datos = mysqli_query($con, $cadena);
         $con->close();
-        return $datos; 
+        return $datos;
     }
-    public function insertar($titulo, $genero, $anio, $director, $valoracion_valoracion_id)
+    public function insertar($titulo, $genero, $anio, $director, $usuario_beneficiario_id)
     {
        try {
-        $con = new ClassConectar();
+        $con = new ClaseConectar();
         $con = $con->ProcedimientoParaConectar();
-        $cadena = "INSERT INTO `peliculas`(`titulo`, `genero`, `anio`, `director`, `valoracion_valoracion_id`) VALUES ('$titulo', '$genero', $anio, '$director', '$valoracion_valoracion_id')" ;
+        $cadena = "INSERT INTO `peliculas`(`titulo`, `genero`, `anio`, `director`, `usuario_beneficiario_id`) VALUES ('$titulo', '$genero', $anio, '$director', '$usuario_beneficiario_id')" ;
         if (mysqli_query($con, $cadena)){
             return $con->insert_id;
         } else {
@@ -39,9 +41,9 @@ class peliculas{
     public function actualizar ($titulo, $genero, $anio, $director, $valoracion_valoracion_id)
     {
     try {
-    $con = new ClassConectar();
+    $con = new ClaseConectar();
     $con =$con->ProcedimientoParaConectar();
-    $cadena = "UPDATE `peliculas` SET `titulo`='$titulo',`genero`='$genero',`anio`='$anio',`director`='$director','valoracion_valoracion_id`= $valoracion_valoracion_id WHERE 'peliculas_id' = $peliculas_id";
+    $cadena = "UPDATE `peliculas` SET `titulo`='$titulo',`genero`='$genero',`anio`='$anio',`director`='$director','usuario_beneficiario_id`= $usuario_beneficiario_id WHERE 'peliculas_id' = $peliculas_id";
     if (mysqli_query($con, $cadena)){
         return $con->insert_id;
     } else {
