@@ -14,7 +14,7 @@ class Peliculas{
     {
         $con = new ClaseConectar();
         $con = $con->ProcedimientoParaConectar();
-        $cadena = 'select * from peliculas where peliculas_id='. $peliculas_id;
+        $cadena = 'select * from peliculas where peliculas_id ='. $peliculas_id;
         //echo $cadena;
         //die;
         $datos = mysqli_query($con, $cadena);
@@ -26,7 +26,7 @@ class Peliculas{
        try {
         $con = new ClaseConectar();
         $con = $con->ProcedimientoParaConectar();
-        $cadena = "INSERT INTO `peliculas`(`titulo`, `genero`, `anio`, `director`, `usuario_beneficiario_id`) VALUES ('$titulo', '$genero', $anio, '$director', '$usuario_beneficiario_id')" ;
+        $cadena = "INSERT INTO `peliculas`(`titulo`, `genero`, `anio`, `director`, `usuario_beneficiario_id`) VALUES ('$titulo', '$genero', $anio, '$director', $usuario_beneficiario_id)" ;
         if (mysqli_query($con, $cadena)){
             return $con->insert_id;
         } else {
@@ -38,12 +38,12 @@ class Peliculas{
         $con->close();
     }
 }
-    public function actualizar ($titulo, $genero, $anio, $director, $valoracion_valoracion_id)
+    public function actualizar ($peliculas_id, $titulo, $genero, $anio, $director, $usuario_beneficiario_id)
     {
     try {
     $con = new ClaseConectar();
     $con =$con->ProcedimientoParaConectar();
-    $cadena = "UPDATE `peliculas` SET `titulo`='$titulo',`genero`='$genero',`anio`='$anio',`director`='$director','usuario_beneficiario_id`= $usuario_beneficiario_id WHERE 'peliculas_id' = $peliculas_id";
+    $cadena = "UPDATE `peliculas`  SET `titulo`='$titulo',`genero`='$genero',`anio`='$anio',`director`='$director',usuario_beneficiario_id ='$usuario_beneficiario_id' WHERE `peliculas_id` = $peliculas_id";
     if (mysqli_query($con, $cadena)){
         return $con->insert_id;
     } else {
@@ -55,13 +55,12 @@ class Peliculas{
         $con->close();
     }
 }
-
     public function eliminar ($peliculas_id)
     {
     try {
         $con = new ClaseConectar();
         $con = $con->ProcedimientoParaConectar();
-        $cadena = "DELETE FROM `peliculas` WHERE `peliculas_id`= $$peliculas_id";
+        $cadena = "DELETE FROM `peliculas` WHERE `peliculas_id`= $peliculas_id";
         if (mysqli_query($con, $cadena)) {
             return 1;
         } else {

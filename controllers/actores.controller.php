@@ -30,25 +30,25 @@ switch ($_GET["op"]) {
         $nombre = $_POST ["nombre"];
         $apellido = $_POST ["apellido"];
         $fecha_nacimiento = $_POST ["fecha_nacimiento"]; 
-        $nacionalidad = $_POST ["nacionalidad"]; 
+        $nacionalidad = $_POST ["nacionalidad"];
         $datos = array ();
-        $datos= $actores ->insertar ($nombre, $apellido, $fecha_nacimiento, $nacionalidad);
+        $datos= $actores->insertar ($nombre, $apellido, $fecha_nacimiento, $nacionalidad);
         echo json_encode ($datos);
         break;
     case "actualizar":
         $actor_id = $_POST ["actor_id"];
         $nombre = $_POST ["nombre"];
         $apellido = $_POST ["apellido"];
-        $fecha_nacimiento = $_POST ["fecha_nacimiento"]; 
+        $fecha_nacimiento= $_POST ["fecha_nacimiento"]; 
         $nacionalidad = $_POST ["nacionalidad"]; 
         $datos = array ();
-        $datos= $actores ->actualizar ($nombre, $apellido, $fecha_nacimiento, $nacionalidad);
+        $datos= $actores->actualizar ($actor_id,$nombre, $apellido, $fecha_nacimiento, $nacionalidad);
         echo json_encode ($datos);
         break;
      case "eliminar":
-        $actores_id = $_POST ["actores_id"];
+        $actor_id = $_POST ["actor_id"];
         $datos = array ();
-        $datos = $actores -> eliminar ($actores_id);
+        $datos = $actores-> eliminar ($actor_id);
         echo json_encode ($datos);
         break;  
 }

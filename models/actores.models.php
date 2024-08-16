@@ -15,8 +15,6 @@ class Actores{
         $con = new ClaseConectar();
         $con = $con->ProcedimientoParaConectar();
         $cadena = 'select * from actores where actor_id='. $actor_id;
-        //echo $cadena;
-        //die;
         $datos = mysqli_query($con, $cadena);
         $con->close();
         return $datos;
@@ -26,7 +24,7 @@ class Actores{
        try {
         $con = new ClaseConectar();
         $con = $con->ProcedimientoParaConectar();
-        $cadena = "INSERT INTO `actores`(`nombre`, `apellido`, `fecha_nacimiento`, `nacionalidad`) VALUES ($nombre, $apellido, $fecha_nacimiento, $nacionalidad)" ;
+        $cadena = "INSERT INTO `actores`(`nombre`, `apellido`, `fecha_nacimiento`, `nacionalidad`) VALUES ('$nombre', '$apellido', '$fecha_nacimiento', '$nacionalidad')" ;
         if (mysqli_query($con, $cadena)){
             return $con->insert_id;
         } else {
@@ -38,7 +36,7 @@ class Actores{
         $con->close();
     }
 }
-    public function actualizar ($nombre, $apellido, $fecha_nacimiento, $nacionalidad)
+    public function actualizar ($actor_id, $nombre, $apellido, $fecha_nacimiento, $nacionalidad)
     {
     try {
     $con = new ClaseConectar();
@@ -61,7 +59,7 @@ class Actores{
     try {
         $con = new ClaseConectar();
         $con = $con->ProcedimientoParaConectar();
-        $cadena = "DELETE FROM `actores` WHERE `actor_id`= $$actor_id";
+        $cadena = "DELETE FROM `actores` WHERE `actor_id`= $actor_id";
         if (mysqli_query($con, $cadena)) {
             return 1;
         } else {

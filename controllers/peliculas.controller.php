@@ -29,22 +29,20 @@ switch ($_GET["op"]) {
     case "insertar":
         $titulo = $_POST ["titulo"];
         $genero = $_POST ["genero"];
-        $anio = $_POST ["anio"]; 
         $director = $_POST ["director"]; 
         $usuario_beneficiario_id = $_POST ["usuario_beneficiario_id"];
         $datos = array ();
-        $datos= $peliculas ->insertar ($titulo, $genero, $anio, $director, $usuario_beneficiario_id);
+        $datos= $peliculas ->insertar ($titulo, $genero, $director, $usuario_beneficiario_id);
         echo json_encode ($datos);
         break;
     case "actualizar":
         $peliculas_id = $_POST ["peliculas_id"];
         $titulo = $_POST ["titulo"];
         $genero = $_POST ["genero"];
-        $anio = $_POST ["anio"]; 
         $director = $_POST ["director"]; 
         $usuario_beneficiario_id = $_POST ["usuario_beneficiario_id"];
         $datos = array ();
-        $datos= $peliculas ->actualizar ($titulo, $genero, $anio, $director, $usuario_beneficiario_id);
+        $datos= $peliculas ->actualizar ($peliculas_id, $titulo, $genero, $director, $usuario_beneficiario_id);
         echo json_encode ($datos);
         break;
      case "eliminar":
