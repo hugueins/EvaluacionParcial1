@@ -4,7 +4,7 @@ class Usuarios{
     public function todos() {
         $con = new ClaseConectar();
         $con = $con->ProcedimientoParaConectar();
-        $cadena = "select * from usuario";
+        $cadena = "select * from `usuario`";
         $datos = mysqli_query ($con, $cadena);
         $con->close();
         return $datos; 
@@ -14,7 +14,7 @@ class Usuarios{
     {
         $con = new ClaseConectar();
         $con = $con->ProcedimientoParaConectar();
-        $cadena = 'select * from usuario where beneficiario_id='. $beneficiario_id;
+        $cadena = 'select * from `usuario` where beneficiario_id='. $beneficiario_id;
         //echo $cadena;
         //die;
         $datos = mysqli_query($con, $cadena);

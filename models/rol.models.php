@@ -4,7 +4,7 @@ class Roles{
     public function todos() {
         $con = new ClaseConectar();
         $con = $con->ProcedimientoParaConectar();
-        $cadena = "select * from rol";
+        $cadena = "select * from `rol`";
         $datos = mysqli_query ($con, $cadena);
         $con->close();
         return $datos; 
@@ -14,14 +14,14 @@ class Roles{
     {
         $con = new ClaseConectar();
         $con = $con->ProcedimientoParaConectar();
-        $cadena = 'select * from rol where rol_id='. $rol_id;
+        $cadena = 'select * from `rol` where rol_id='. $rol_id;
         //echo $cadena;
         //die;
         $datos = mysqli_query($con, $cadena);
         $con->close();
         return $datos;
     }
-    public function insertar($rol_id)
+    public function insertar($nombre_rol)
     {
        try {
         $con = new ClaseConectar();
@@ -38,7 +38,7 @@ class Roles{
         $con->close();
     }
 }
-    public function actualizar ($nombre_rol)
+    public function actualizar ($rol_id,$nombre_rol)
     {
     try {
     $con = new ClaseConectar();

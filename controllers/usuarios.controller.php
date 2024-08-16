@@ -48,7 +48,7 @@ switch ($_GET["op"]) {
         $fecha_nacimiento = $_POST ["fecha_nacimiento"]; 
         $rol_rol_id = $_POST ["rol_rol_id"]; 
         $datos = array ();
-        $datos= $actores ->insertar ($nombres, $identificacion, $usuario, $contraseña, $correo, $fecha_nacimiento, $rol_rol_id);
+        $datos= $actores ->actualziar ($beneficiario_id, $nombres, $identificacion, $usuario, $contraseña, $correo, $fecha_nacimiento, $rol_rol_id);
         echo json_encode ($datos);
         break;
      case "eliminar":

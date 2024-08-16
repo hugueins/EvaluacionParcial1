@@ -38,7 +38,7 @@ class Valoracion{
         $con->close();
     }
 }
-    public function actualizar ($nombre)
+    public function actualizar ($valoracion_id,$nombre)
     {
     try {
     $con = new ClaseConectar();
