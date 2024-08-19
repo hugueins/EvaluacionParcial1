@@ -5,10 +5,8 @@ header("Access-Control-Allow-Methods: GET, POST, OPTIONS, PUT, DELETE");
 header("Allow: GET, POST, OPTIONS, PUT, DELETE");
 $method = $_SERVER["REQUEST_METHOD"];
 if($method == "OPTIONS") {die();}
-
 require_once ("../models/rol.models.php");
 $rol = new Roles;
-
 switch ($_GET["op"]) {
     case "todos":
         $datos =$rol->todos();
@@ -19,8 +17,6 @@ switch ($_GET["op"]) {
         break;
     case "uno":
         $rol_id =$_POST["rol_id"];
-        //var_dump ($rol_id);
-        //die;
         $datos = array ();
         $datos = $rol->uno($rol_id);
         $res = mysqli_fetch_assoc($datos);
@@ -36,13 +32,13 @@ switch ($_GET["op"]) {
         $rol_id = $_POST ["rol_id"];
         $nombre_rol = $_POST ["nombre_rol"];
         $datos = array ();
-        $datos= $rol ->actualizar ($nombre_rol);
+        $datos= $rol ->actualizar ($rol_id, $nombre_rol);
         echo json_encode ($datos);
         break;
      case "eliminar":
         $rol_id = $_POST ["rol_id"];
         $datos = array ();
-        $datos = $rol -> eliminar ($rol_id);
+        $datos = $rol ->eliminar($rol_id);
         echo json_encode ($datos);
         break;  
 }

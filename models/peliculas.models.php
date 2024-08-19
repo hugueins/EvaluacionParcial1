@@ -43,7 +43,7 @@ class Peliculas{
     try {
     $con = new ClaseConectar();
     $con =$con->ProcedimientoParaConectar();
-    $cadena = "UPDATE `peliculas` SET `titulo`='$titulo',`genero`='$genero',`anio`='$anio',`director`='$director', `usuario_beneficiario_id` = '$usuario_beneficiario_id' WHERE `peliculas_id` = $peliculas_id";
+    $cadena = "UPDATE `peliculas` SET `titulo`='$titulo',`genero`='$genero',`anio`=$anio,`director`='$director', `usuario_beneficiario_id` = $usuario_beneficiario_id WHERE `peliculas_id` = $peliculas_id";
     if (mysqli_query($con, $cadena)){
         return $con->insert_id;
     } else {

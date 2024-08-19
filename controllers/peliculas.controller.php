@@ -19,8 +19,6 @@ switch ($_GET["op"]) {
         break;
     case "uno":
         $peliculas_id =$_POST["peliculas_id"];
-        //var_dump ($peliculas_id);
-        //die;
         $datos = array ();
         $datos = $peliculas->uno($peliculas_id);
         $res = mysqli_fetch_assoc($datos);
@@ -31,7 +29,7 @@ switch ($_GET["op"]) {
         $genero = $_POST ["genero"];
         $anio = $_POST ["anio"];
         $director = $_POST ["director"]; 
-        $usuario_beneficiario_id = $_POST ["usuario_beneficiario_id"];
+        $usuario_beneficiario_id = $_POST["usuario_beneficiario_id"];
         $datos = array ();
         $datos= $peliculas ->insertar ($titulo, $genero, $anio,  $director, $usuario_beneficiario_id);
         echo json_encode ($datos);

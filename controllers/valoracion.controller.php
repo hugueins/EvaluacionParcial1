@@ -19,8 +19,6 @@ switch ($_GET["op"]) {
         break;
     case "uno":
         $valoracion_id =$_POST["valoracion_id"];
-        //var_dump ($valoracion_id);
-        //die;
         $datos = array ();
         $datos = $rol->uno($valoracion_id);
         $res = mysqli_fetch_assoc($datos);
@@ -32,11 +30,11 @@ switch ($_GET["op"]) {
         $datos= $rol ->insertar ($nombre);
         echo json_encode ($datos);
         break;
-    case "actualizar":
+   case "actualizar":
         $valoracion_id = $_POST ["valoracion_id"];
         $nombre = $_POST ["nombre"];
         $datos = array ();
-        $datos= $rol ->actualizar ($nombre);
+        $datos= $rol ->actualizar ($valoracion_id, $nombre);
         echo json_encode ($datos);
         break;
      case "eliminar":

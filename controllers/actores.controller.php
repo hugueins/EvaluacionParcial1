@@ -46,7 +46,7 @@ switch ($_GET["op"]) {
         echo json_encode ($datos);
         break;
      case "eliminar":
-        $actor_id = $_POST ["actor_id"];
+        $actor_id = $_POST ['actor_id'];
         $datos = array ();
         $datos = $actores-> eliminar ($actor_id);
         echo json_encode ($datos);

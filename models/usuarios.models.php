@@ -10,11 +10,11 @@ class Usuarios{
         return $datos; 
     } 
    
-    public function uno ($beneficiario_id)
+    public function uno ($usuario_id)
     {
         $con = new ClaseConectar();
         $con = $con->ProcedimientoParaConectar();
-        $cadena = 'select * from `usuario` where beneficiario_id='. $beneficiario_id;
+        $cadena ='SELECT * FROM `usuario` where usuario_id='. $usuario_id;
         //echo $cadena;
         //die;
         $datos = mysqli_query($con, $cadena);
@@ -26,7 +26,7 @@ class Usuarios{
        try {
         $con = new ClaseConectar();
         $con = $con->ProcedimientoParaConectar();
-        $cadena = "INSERT INTO `usuario`(`nombres`, `identificacion`, `usuario`, `contraseña`, `correo`,`fecha_nacimiento`, `rol_rol_id`) VALUES ('$nombres', $identificacion, $usuario, '$contraseña', '$correo', `$fecha_nacimiento`, $rol_rol_id)" ;
+        $cadena = "INSERT INTO `usuario`(`nombres`, `identificacion`, `usuario`, `contraseña`, `correo`,`fecha_nacimiento`, `rol_rol_id`) VALUES ('$nombres', $identificacion, '$usuario', '$contraseña', '$correo', '$fecha_nacimiento', $rol_rol_id)" ;
         if (mysqli_query($con, $cadena)){
             return $con->insert_id;
         } else {
@@ -38,13 +38,14 @@ class Usuarios{
         $con->close();
     }
 }
-    public function actualizar ($nombres, $identificacion, $usuario, $contraseña, $valoracion_valoracion_id)
+    public function actualizar ($usuario_id, $nombres, $identificacion, $usuario, $contraseña, $correo, $fecha_nacimiento,$rol_rol_id)
     {
     try {
     $con = new ClaseConectar();
     $con =$con->ProcedimientoParaConectar();
-    $cadena = "UPDATE `usuario` SET `nombres`='$nombres',`identificacion`=$identificacion,`usuario`='$usuario',`contraseña`='$contraseña','correo`= $correo `fecha_nacimiento` = `$fecha_nacimiento` , `rol_rol_id` = $rol_rol_id  WHERE 'beneficiario_id' = $beneficiario_id";
-    if (mysqli_query($con, $cadena)){
+    $cadena = "UPDATE `usuario` SET `nombres`='$nombres',`identificacion`=$identificacion,`usuario`='$usuario',`contraseña`='$contraseña',`correo`= '$correo', `fecha_nacimiento` = '$fecha_nacimiento', `rol_rol_id` = $rol_rol_id  WHERE `usuario_id` = $usuario_id";
+   
+   if (mysqli_query($con, $cadena)){
         return $con->insert_id;
     } else {
         return $con->error;
@@ -56,12 +57,12 @@ class Usuarios{
     }
 }
 
-    public function eliminar ($beneficiario_id)
+    public function eliminar ($usuario_id)
     {
     try {
         $con = new ClaseConectar();
         $con = $con->ProcedimientoParaConectar();
-        $cadena = "DELETE FROM `usuario` WHERE `beneficiario_id`= $$beneficiario_id";
+        $cadena = "DELETE FROM `usuario` WHERE `usuario_id`= $usuario_id";
         if (mysqli_query($con, $cadena)) {
             return 1;
         } else {

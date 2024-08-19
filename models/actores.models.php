@@ -1,6 +1,7 @@
 <?php
 require_once('../config/config.php');
-class Actores{
+class Actores
+{
     public function todos() {
         $con = new ClaseConectar();
         $con = $con->ProcedimientoParaConectar();
@@ -41,7 +42,9 @@ class Actores{
     try {
     $con = new ClaseConectar();
     $con =$con->ProcedimientoParaConectar();
-    $cadena = "UPDATE `actores` SET `nombre`='$nombre',`apellido`='$apellido',`fecha_nacimiento`='$fecha_nacimiento',`nacionalidad`='$nacionalidad' WHERE 'actor_id' = $actor_id";
+    $cadena = "UPDATE `actores` SET `nombre`='$nombre',`apellido`='$apellido',`fecha_nacimiento`='$fecha_nacimiento',`nacionalidad`='$nacionalidad' WHERE `actor_id` = $actor_id";
+    echo $cadena;
+    die;
     if (mysqli_query($con, $cadena)){
         return $con->insert_id;
     } else {
@@ -60,6 +63,8 @@ class Actores{
         $con = new ClaseConectar();
         $con = $con->ProcedimientoParaConectar();
         $cadena = "DELETE FROM `actores` WHERE `actor_id`= $actor_id";
+        //echo $cadena;
+        //die;
         if (mysqli_query($con, $cadena)) {
             return 1;
         } else {
