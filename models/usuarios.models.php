@@ -1,5 +1,6 @@
 <?php
 require_once('../config/config.php');
+//TODO: archivo CRUD funcional
 class Usuarios{
     public function todos() {
         $con = new ClaseConectar();
